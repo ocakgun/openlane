@@ -30,14 +30,13 @@ skywater-pdk: clone-skywater-pdk skywater-library
 clone-skywater-pdk: check-env 
 	cd  $(PDK_ROOT) && \
 		rm -rf skywater-pdk && \
-		git clone --depth 30 -q https://github.com/google/skywater-pdk.git skywater-pdk && \
+		git clone https://github.com/google/skywater-pdk.git skywater-pdk && \
 		cd skywater-pdk && \
 		git checkout -qf 3f310bcc264df0194b9f7e65b83c59759bb27480
 
-
 skywater-library: check-env 
 	cd  $(PDK_ROOT)/skywater-pdk && \
-		git submodule update -q --init libraries/$(STD_CELL_LIBRARY)/latest && \
+		git submodule update --init libraries/$(STD_CELL_LIBRARY)/latest && \
 		make $(STD_CELL_LIBRARY) 
 
 open_pdks: clone-open_pdks install-open_pdks
@@ -45,7 +44,7 @@ open_pdks: clone-open_pdks install-open_pdks
 clone-open_pdks: check-env
 	cd $(PDK_ROOT) && \
 		rm -rf open_pdks && \
-		git clone --depth 30 -q https://github.com/RTimothyEdwards/open_pdks.git open_pdks && \
+		git clone https://github.com/RTimothyEdwards/open_pdks.git open_pdks && \
 		cd open_pdks && \
 		git checkout -qf 60b4f62aabff2e4fd9df194b6db59e61a2bd2472
 

@@ -1,5 +1,3 @@
-language: python
-
 branches:
   only:
     - travisCI
@@ -9,19 +7,12 @@ services:
 
 os: 
   - linux
-  - osx
 
 jobs:
   include:
-    - name: "Fastest Test Set"
+    - stage: build    
       env: TEST_SET=fastestTestSet
-    - name: "Typical Test Set"
-      env: TEST_SET=typicalTestSet
-    - name: "Slowest Test Set 1"
-      env: TEST_SET=slowestTestSet
-    
-install:
-  - sh travisCI/travisBuild.sh
-
-script: 
-  - sh travisCI/travisTest.sh travisCI $TEST_SET  
+      install:
+        - sh travisCI/travisBuild.sh
+      script: 
+        - sh travisCI/travisTest.sh travisCI $TEST_SET  
