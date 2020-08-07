@@ -1,6 +1,9 @@
+language: python
+
 branches:
   only:
     - travisCI
+    - develop
 
 services:
     - docker
@@ -10,9 +13,11 @@ os:
 
 jobs:
   include:
-    - stage: build    
+    - name: "Fastest Test Set"
       env: TEST_SET=fastestTestSet
-      install:
-        - sh travisCI/travisBuild.sh
-      script: 
-        - sh travisCI/travisTest.sh travisCI $TEST_SET  
+    
+install:
+  - sh travisCI/travisBuild.sh
+
+script: 
+  - sh travisCI/travisTest.sh travisCI $TEST_SET  
