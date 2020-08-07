@@ -29,6 +29,7 @@ skywater-pdk: clone-skywater-pdk skywater-library
 
 clone-skywater-pdk: check-env 
 	cd  $(PDK_ROOT) && \
+		rm -rf skywater-pdk && \
 		git clone https://github.com/google/skywater-pdk.git && \
 		cd skywater-pdk && \
 		git checkout 3f310bcc264df0194b9f7e65b83c59759bb27480
@@ -43,15 +44,16 @@ open_pdks: clone-open_pdks install-open_pdks
 
 clone-open_pdks: check-env
 	cd $(PDK_ROOT) && \
-                git clone https://github.com/RTimothyEdwards/open_pdks.git && \
-                cd open_pdks && \
-                git checkout 60b4f62aabff2e4fd9df194b6db59e61a2bd2472
+		rm -rf open_pdks && \
+		git clone https://github.com/RTimothyEdwards/open_pdks.git && \
+		cd open_pdks && \
+		git checkout 60b4f62aabff2e4fd9df194b6db59e61a2bd2472
 
 install-open_pdks: check-env
 	cd $(PDK_ROOT)/open_pdks && \
-                ./configure --with-sky130-source=$(PDK_ROOT)/skywater-pdk/libraries --with-local-path=$(PDK_ROOT) && \
-                make && \
-                make install-local 
+		./configure --with-sky130-source=$(PDK_ROOT)/skywater-pdk/libraries --with-local-path=$(PDK_ROOT) && \
+		make && \
+		make install-local 
 
 
 openlane:
