@@ -74,6 +74,8 @@ else:
         designs = list(OrderedDict.fromkeys(args.designs))
 
 excluded_designs = list(OrderedDict.fromkeys(args.excluded_designs))
+rem_designs = designs
+
 
 for excluded_design in excluded_designs:
         if excluded_design in designs:
@@ -137,6 +139,14 @@ report_log.addHandler(report_handler)
 report_log.setLevel(logging.INFO)
 
 report_log.info(Report.get_header() + "," + ConfigHandler.get_header())
+
+
+def printit():
+  threading.Timer(120.0, printit).start()
+  print("Remaining designs: ",rem_designs,"\n")
+
+printit()
+
 
 def run_design(designs_queue):
         while not designs_queue.empty():
@@ -226,9 +236,10 @@ def run_design(designs_queue):
                         subprocess.check_output(deleteDirectory.split())
 
                         log.info('{design} {tag} Deleting Run Directory Finished..'.format(design=design, tag=tag))
+                
+                rem_designs.remove(design)
 
-
-print(designs)
+#print(designs)
 
 def addCellPerMMSquaredOverCoreUtil(filename):
         data = pd.read_csv(filename)
