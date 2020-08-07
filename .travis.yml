@@ -1,0 +1,16 @@
+language: python
+
+branches:
+  only:
+    - travisCI
+
+services:
+    - docker
+
+os: linux
+
+jobs:
+  include:
+    - stage: build
+      install:
+        - sh ./travisBuild.sh
