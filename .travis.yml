@@ -27,4 +27,4 @@ jobs:
         env: DESIGN=usb
       - name: "xtea"
         env: DESIGN=xtea
-     script: sh ./travisTest.sh $DESIGN  
+      script: sh ./travisTest.sh $DESIGN  
