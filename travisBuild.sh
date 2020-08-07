@@ -1,4 +1,4 @@
-#make openlane
+make openlane
 mkdir pdks
 export PDK_ROOT=$(pwd)/pdks
 export RUN_ROOT=$(pwd)
@@ -14,7 +14,7 @@ git checkout -qf 3f310bcc264df0194b9f7e65b83c59759bb27480
 echo "checked out skywater-pdk"
 cd  $PDK_ROOT/skywater-pdk
 echo "went into skywater-pdk"
-git submodule update -qf --init libraries/sky130_fd_sc_hd/latest
+git submodule update --quiet --init libraries/sky130_fd_sc_hd/latest
 echo "got submodule"
 make sky130_fd_sc_hd
 echo "ran make on sky130_fd_sc_hd" 
