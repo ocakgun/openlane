@@ -141,14 +141,15 @@ report_log.setLevel(logging.INFO)
 report_log.info(Report.get_header() + "," + ConfigHandler.get_header())
 
 
-def printit():
-  t = threading.Timer(120.0, printit)
+
+def printRemDesignList():
+  global t
   t.start()
   print("Remaining designs: ",rem_designs,"\n")
-  if len(rem_designs) == 0:
-        t.cancel()
 
-printit()
+t = threading.Timer(120.0, printRemDesignList)
+
+printRemDesignList()
 
 
 def run_design(designs_queue):
@@ -338,6 +339,8 @@ if args.benchmark is not None:
                 output_xlsx=report_file_name + "_benchmark_final_report.xlsx"
         )
         subprocess.check_output(full_benchmark_comp_cmd.split())
+
+t.cancel()
 
 log.info("Done")
 

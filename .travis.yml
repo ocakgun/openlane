@@ -13,11 +13,17 @@ os:
 
 jobs:
   include:
+    - name: "Base Test"
+      env: TEST_SET=spm
     - name: "Fastest Test Set"
       env: TEST_SET=fastestTestSet
+    - name: "Typical Test Set"
+      env: TEST_SET=typicalTestSet
+    - name: "Slowest Test Set"
+      env: TEST_SET=slowestTestSet
     
 install:
   - sh travisCI/travisBuild.sh
 
 script: 
-  - sh travisCI/travisTest.sh travisCI $TEST_SET  
+  - sh travisCI/travisTest.sh $TEST_SET  
