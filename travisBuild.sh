@@ -26,4 +26,5 @@ git checkout -qf 60b4f62aabff2e4fd9df194b6db59e61a2bd2472
 echo "checkedout open_pdks"
 docker run -it -v $RUN_ROOT:/openLANE_flow -v $PDK_ROOT:$PDK_ROOT -e PDK_ROOT=$PDK_ROOT openlane:rc3  bash -c "make install-open_pdks"
 echo "done installing"
+cd $RUN_ROOT
 exit 0

@@ -14,3 +14,5 @@ jobs:
     - stage: build
       install:
         - sh ./travisBuild.sh
+      script:
+        - sh ./travisTest.sh spm
