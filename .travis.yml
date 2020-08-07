@@ -4,9 +4,6 @@ branches:
   only:
     - travisCI
 
-git:
-  describe: false
-
 services:
     - docker
 
