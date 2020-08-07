@@ -142,8 +142,11 @@ report_log.info(Report.get_header() + "," + ConfigHandler.get_header())
 
 
 def printit():
-  threading.Timer(120.0, printit).start()
+  t = threading.Timer(120.0, printit)
+  t.start()
   print("Remaining designs: ",rem_designs,"\n")
+  if len(rem_designs) == 0:
+        t.cancel()
 
 printit()
 

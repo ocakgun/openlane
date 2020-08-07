@@ -12,21 +12,12 @@ os:
 
 jobs:
   include:
-    - name: "spm"
-      env: DESIGN=spm
-    - name: "APU"
-      env: DESIGN=APU
-    - name: "PPU"
-      env: DESIGN=PPU
-    - name: "usb"
-      env: DESIGN=usb
-    - name: "xtea"
-      env: DESIGN=xtea
-    - name: "md5"
-      env: DESIGN=md5
-
-install:
-  - sh ./travisBuild.sh
-
-script: 
-  - sh ./travisTest.sh $DESIGN  
+    - stage: build
+      script:
+        - sh ./travisBuild.sh
+    - stage: test
+      script: ./travisTest.sh spm
+    - # stage name not required
+      script: ./travisTest.sh xtea  
+    - # stage name not required
+      script: ./travisTest.sh APU
