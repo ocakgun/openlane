@@ -9,22 +9,24 @@ services:
 
 os: 
   - linux
-  - osx
 
 jobs:
   include:
-    - stage: build
-      install:
-        - sh ./travisBuild.sh
-      script:
-        - sh ./travisTest.sh spm
-    - stage: test
-      - name: "APU"
-        env: DESIGN=APU
-      - name: "PPU"
-        env: DESIGN=PPU
-      - name: "usb"
-        env: DESIGN=usb
-      - name: "xtea"
-        env: DESIGN=xtea
-      script: sh ./travisTest.sh $DESIGN  
+    - name: "spm"
+      env: DESIGN=spm
+    - name: "APU"
+      env: DESIGN=APU
+    - name: "PPU"
+      env: DESIGN=PPU
+    - name: "usb"
+      env: DESIGN=usb
+    - name: "xtea"
+      env: DESIGN=xtea
+    - name: "md5"
+      env: DESIGN=md5
+
+install:
+  - sh ./travisBuild.sh
+
+script: 
+  - sh ./travisTest.sh $DESIGN  
