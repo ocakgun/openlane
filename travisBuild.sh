@@ -6,19 +6,19 @@ echo $PDK_ROOT
 echo $RUN_ROOT
 cd  $PDK_ROOT
 rm -rf skywater-pdk
-git clone --depth 30 -q https://github.com/google/skywater-pdk.git skywater-pdk
+git clone https://github.com/google/skywater-pdk.git skywater-pdk
 echo "cloned skywater-pdk"
 cd skywater-pdk
 echo "went into skywater-pdk"
 cd  $PDK_ROOT/skywater-pdk
 echo "went into skywater-pdk"
-git submodule update --quiet --init libraries/sky130_fd_sc_hd/latest
+git submodule update --init libraries/sky130_fd_sc_hd/latest
 echo "got submodule"
 make sky130_fd_sc_hd
 echo "ran make on sky130_fd_sc_hd" 
 cd $PDK_ROOT 
 rm -rf open_pdks 
-git clone --depth 30 -q https://github.com/RTimothyEdwards/open_pdks.git open_pdks
+git clone https://github.com/RTimothyEdwards/open_pdks.git open_pdks
 echo "cloned open_pdks"
 cd open_pdks 
 echo "went into open_pdks"
