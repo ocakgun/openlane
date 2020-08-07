@@ -7,24 +7,32 @@ branches:
 services:
     - docker
 
-os: linux
-
+os: 
+  - linux
+  - osx
+  
 jobs:
   include:
-    - name: "APU"
+    - stage: build
       install:
         - sh ./travisBuild.sh
-      env: DESIGN=APU
-    - name: "PPU"
-      install:
-        - sh ./travisBuild.sh
-      env: DESIGN=PPU
-    - name: "usb"
-      install:
-        - sh ./travisBuild.sh
-      env: DESIGN=usb
-    - name: "xtea"
-      install:
-        - sh ./travisBuild.sh
-      env: DESIGN=xtea
-script: sh ./travisTest.sh $DESIGN  
+      script:
+        - sh ./travisTest.sh spm
+    - stage: test
+      - name: "APU"
+        install:
+          - sh ./travisBuild.sh
+        env: DESIGN=APU
+      - name: "PPU"
+        install:
+          - sh ./travisBuild.sh
+        env: DESIGN=PPU
+      - name: "usb"
+        install:
+          - sh ./travisBuild.sh
+        env: DESIGN=usb
+      - name: "xtea"
+        install:
+          - sh ./travisBuild.sh
+        env: DESIGN=xtea
+     script: sh ./travisTest.sh $DESIGN  
