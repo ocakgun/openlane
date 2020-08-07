@@ -9,15 +9,19 @@ services:
 
 os: 
   - linux
+  - osx
 
 jobs:
   include:
-    - stage: build
-      script:
-        - sh ./travisBuild.sh
-    - stage: test
-      script: ./travisTest.sh spm
-    - # stage name not required
-      script: ./travisTest.sh xtea  
-    - # stage name not required
-      script: ./travisTest.sh APU
+    - name: "Fastest Test Set"
+      env: TEST_SET=fastestTestSet
+    - name: "Typical Test Set"
+      env: TEST_SET=typicalTestSet
+    - name: "Slowest Test Set 1"
+      env: TEST_SET=slowestTestSet
+    
+install:
+  - sh travisCI/travisBuild.sh
+
+script: 
+  - sh travisCI/travisTest.sh travisCI $TEST_SET  
