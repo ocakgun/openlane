@@ -11,16 +11,20 @@ os: linux
 
 jobs:
   include:
-    - stage: build
+    - name: "APU"
       install:
         - sh ./travisBuild.sh
-      env: DESIGN=spm 
-    - name: "APU"
       env: DESIGN=APU
     - name: "PPU"
+      install:
+        - sh ./travisBuild.sh
       env: DESIGN=PPU
     - name: "usb"
+      install:
+        - sh ./travisBuild.sh
       env: DESIGN=usb
     - name: "xtea"
+      install:
+        - sh ./travisBuild.sh
       env: DESIGN=xtea
 script: sh ./travisTest.sh $DESIGN  
