@@ -10,8 +10,6 @@ git clone --depth 30 -q https://github.com/google/skywater-pdk.git skywater-pdk
 echo "cloned skywater-pdk"
 cd skywater-pdk
 echo "went into skywater-pdk"
-git checkout -qf 3f310bcc264df0194b9f7e65b83c59759bb27480
-echo "checked out skywater-pdk"
 cd  $PDK_ROOT/skywater-pdk
 echo "went into skywater-pdk"
 git submodule update --quiet --init libraries/sky130_fd_sc_hd/latest
