@@ -60,4 +60,6 @@ RUN tar -xzf openLANE_flow.tar.gz -C openLANE_flow&& \
 RUN cd $OPENROAD/OpenDB_python/&& python3 setup.py install
 RUN rm -rf $OPENROAD/OpenDB_python
 
+RUN yum install -y git
+
 WORKDIR /openLANE_flow
