@@ -59,7 +59,9 @@ parser.add_argument('--excluded_designs', '-e', nargs='+', default=[],
                 help="designs to exclude from the run")
 parser.add_argument('--benchmark', '-b', action='store', default=None,
                 help="benchmark report file to compare with")
-                
+parser.add_argument('--print_rem', '-p', action='store', default=None,
+                help="Takes a time period, and prints the list of remaining designs periodically based on it")
+                                
 
 args = parser.parse_args()
 
@@ -143,13 +145,14 @@ report_log.info(Report.get_header() + "," + ConfigHandler.get_header())
 
 
 def printRemDesignList():
-  global t
-  t.start()
-  print("Remaining designs: ",rem_designs,"\n")
+        t = threading.Timer(float(args.print_rem), printRemDesignList)  
+        t.start()
+        print("Remaining designs: ",rem_designs)
+        if len(rem_designs) == 0:
+                t.cancel()
 
-t = threading.Timer(120.0, printRemDesignList)
-
-printRemDesignList()
+if args.print_rem is not None:
+        printRemDesignList()
 
 
 def run_design(designs_queue):
@@ -340,7 +343,7 @@ if args.benchmark is not None:
         )
         subprocess.check_output(full_benchmark_comp_cmd.split())
 
-t.cancel()
+
 
 log.info("Done")
 
