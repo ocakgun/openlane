@@ -16,3 +16,13 @@ jobs:
         - sh ./travisBuild.sh
       script:
         - sh ./travisTest.sh spm
+    - stage: test
+      - name: "APU"
+        env: DESIGN=APU
+      - name: "PPU"
+        env: DESIGN=PPU
+      - name: "usb"
+        env: DESIGN=usb
+      - name: "xtea"
+        env: DESIGN=xtea
+    script: sh ./travisTest.sh $DESIGN  
